@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Buat Kamu</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;  
+            background-image: url('../img/APA AJA/img/d54b63cc-0845-4bd6-a165-f934c3927c30.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Background GIF Hati Berjatuhan */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0 ;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.tenor.com/u6bN6UjN-YYAAAAC/hearts.gif') repeat;
+            background-size: cover;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        /* Efek Kertas */
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            position: relative;
+            transition: transform 0.5s ease;
+            border: 2px solid #d4af37; /* Warna emas untuk efek klasik */
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        .container.hidden {
+            transform: scale(0);
+        }
+
+        .button {
+            background-color: #ff6f91;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .button:hover {
+            background-color: #ff3d6e;
+        }
+
+        .surat {
+            display: none;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Efek hati berjatuhan */
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Musik Romantis -->
+    <audio id="music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container" id="container">
+        <h2>Hai Kamu! ❤️</h2>
+        <button class="button" onclick="bukaSurat()">Buka Surat</button>
+    </div>
+
+    <div class="container surat" id="surat">
+        <h3>📜 Surat Buat Kamu 🖋️</h3>
+        <p>Hai kamu yang lagi baca ini...</p>
+        <p>haii kamuuuuu namaa kamuu pasti cacaaa, akuuu gatauu mmauuu nuliss apaaa hehehe tapiii buat kamuu akuuu mauuu ucapinnn happy valentine dayy sayanggg, maaf cara aku mungkin aneh ucapinnya soalnya aku bingung mauu ucapin gimanaaa. sooo i hope kamuuu bahagiaa teruss yaa samaa aku, semoga kita bareng bereng terus sampai tahun tahun berikutnyaaa, dan aku harap kamu gaakan ninggalin aku, kamu sayang terus sama aku, kamu juga terus bahagiaaaa yaa soalnya senyum kamu itu bahagiaa kuuuu.
+        </p>
+        <p>LOVEEE YOUUUU MYYY WORLDD! ❤️</p>
+        <button class="button" onclick="tutupSurat()">Tutup</button>
+    </div>
+
+    <script>
+        function bukaSurat() {
+            document.getElementById("container").classList.add("hidden");
+            setTimeout(() => {
+                document.getElementById("container").style.display = "none";
+                document.getElementById("surat").style.display = "block";
+                document.getElementById("music").play();
+                jatuhkanHati();
+            }, 500);
+        }
+
+        function tutupSurat() {
+            document.getElementById("surat").style.display = "none";
+            document.getElementById("container").style.display = "block";
+            document.getElementById("container").classList.remove("hidden");
+            document.getElementById("music").pause();
+        }
+
+        // Efek hati berjatuhan
+        function jatuhkanHati() {
+            setInterval(() => {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
